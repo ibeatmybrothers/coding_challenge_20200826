@@ -36,16 +36,16 @@ public class WordCountResource {
      * @param request - The JSON request POJO
      * @return - JSON response containing a count of the persisted value + the number of words in the request message.
      */
-    @Path("/post")
-    @POST
+    @Path("/put")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Timed
     @ApiResponses(value = {
             @ApiResponse(code=HttpURLConnection.HTTP_OK, message = "OK", response = WordCountResponse.class),
-            @ApiResponse(code=422, message="Invalid or malformed Request body"),
+            @ApiResponse(code=422, message="Invalid or Malformed Request Body"),
             @ApiResponse(code=500, message="Internal Server Error")
     })
-    public WordCountResponse post(@Valid WordCountRequest request) {
+    public WordCountResponse put(@Valid WordCountRequest request) {
         log.debug("Received request with id={} and message={}", request.getId(), request.getMessage());
 
         // Check if the set already houses this ID

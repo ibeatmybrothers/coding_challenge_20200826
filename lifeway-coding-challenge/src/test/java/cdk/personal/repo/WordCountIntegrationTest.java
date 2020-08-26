@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WordCountIntegrationTest {
 
-    final String uri = "http://localhost:8080/word-count/post";
+    final String uri = "http://localhost:8080/word-count/put";
 
     @ClassRule
     public static final DropwizardAppRule<WordCountConfiguration> RULE = new DropwizardAppRule<>(
@@ -27,32 +27,32 @@ public class WordCountIntegrationTest {
 
         Client client = RULE.client();
         WordCountRequest request = new WordCountRequest("1", "First call");
-        Response response = client.target(uri).request().post(Entity.json(request));
+        Response response = client.target(uri).request().put(Entity.json(request));
 
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(2);
 
         request.setId("20");
         request.setMessage("Follow up");
-        response = client.target(uri).request().post(Entity.json(request));
+        response = client.target(uri).request().put(Entity.json(request));
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(4);
 
         request.setId("20");
         request.setMessage("should ignore duplicate id");
-        response = client.target(uri).request().post(Entity.json(request));
+        response = client.target(uri).request().put(Entity.json(request));
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(4);
 
         request.setId("39");
         request.setMessage("for  ");
-        response = client.target(uri).request().post(Entity.json(request));
+        response = client.target(uri).request().put(Entity.json(request));
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(5);
 
         request.setId("04");
         request.setMessage(". . .");
-        response = client.target(uri).request().post(Entity.json(request));
+        response = client.target(uri).request().put(Entity.json(request));
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(5);
 
@@ -60,7 +60,7 @@ public class WordCountIntegrationTest {
         request.setMessage("39 should have accumulated one, " +
                 "04 should have been ignored based off the regex, " +
                 "and 005 should have excluded the numbers and included this-hyphenated-word-as-one-single-word");
-        response = client.target(uri).request().post(Entity.json(request));
+        response = client.target(uri).request().put(Entity.json(request));
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.readEntity(WordCountResponse.class).getCount()).isEqualTo(26);
 
