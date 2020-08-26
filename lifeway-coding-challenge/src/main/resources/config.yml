@@ -5,3 +5,6 @@ logging:
 
 swagger:
   resourcePackage: cdk.personal.repo.resources
+  title: LifeWay Word Count API
+  version: 1.0-SNAPSHOT
+  description: This service receives an id and message and returns a cumulative count of all words in the messages from distinct ids.
