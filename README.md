@@ -8,7 +8,6 @@
 #### Assumptions
 1. I assumed by "word", the service should filter out any text that is not alphabetical
 2. I assumed by ignoring requests with duplicate ids, the service should return a successful response, but not process the message, so it returns the current count
-3. I assumed I should use a POST method since there is no limit specified on the request size
 
 #### Why DropWizard
 Mostly because I've used it in the past. It's easy to pull in a base structure and then add what I need, and it also lends itself well to small services like this.
@@ -27,7 +26,7 @@ but it's a good tool to include regardless.
 #### How to Test
 ##### Sample CURL Command
 ```
-curl -X POST "http://localhost:8080/word-count/post" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": \"4\", \"message\": \"This is a-test call on the service ! ! ! This should-return a count of 16 when it's first run.\"}"
+curl -X PUT "http://localhost:8080/word-count/put" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": \"4\", \"message\": \"This is a-test call on the service ! ! ! This should-return a count of 16 when it's first run.\"}"
 ```
 
 ##### Using Swagger
