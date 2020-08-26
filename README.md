@@ -26,7 +26,7 @@ but it's a good tool to include regardless.
 #### How to Test
 ##### Sample CURL Command
 ```
-curl -X POST "http://localhost:8080/word-count/post" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": \"4\", \"message\": \"This is a-test call on the service ! ! ! This should-return a count of 16 when it's first run.\"}"
+curl -X PUT "http://localhost:8080/word-count/put" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": \"4\", \"message\": \"This is a-test call on the service ! ! ! This should-return a count of 16 when it's first run.\"}"
 ```
 
 ##### Using Swagger
