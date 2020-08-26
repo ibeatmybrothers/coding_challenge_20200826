@@ -23,7 +23,7 @@ public class WordCountIntegrationTest {
     );
 
     @Test
-    public void test_word_call() {
+    public void test_post_call_varying_scenarios() {
 
         Client client = RULE.client();
         WordCountRequest request = new WordCountRequest("1", "First call");

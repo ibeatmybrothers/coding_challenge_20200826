@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class WordCountResponse {
     int count;
 
+    public WordCountResponse(){}
+
     @JsonCreator
     public WordCountResponse(@JsonProperty("count") int count) {
         this.count = count;
