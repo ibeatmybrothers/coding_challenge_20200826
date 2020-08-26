@@ -1,0 +1,7 @@
+logging:
+  level: INFO
+  loggers:
+    cdk.personal.repo: INFO
+
+swagger:
+  resourcePackage: cdk.personal.repo.resources
